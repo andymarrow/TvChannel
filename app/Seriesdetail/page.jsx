@@ -182,7 +182,7 @@ function ChannelPage() {
           {/* Adjusted padding/margin for edge-to-edge feel within content padding */}
           <div className="flex space-x-3 sm:space-x-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
             {channelData.videos.map((video) => (
-              <Link href={`/videos/${video.id}`} key={video.id}>
+              <Link href={`/VideoDetailtwo`} key={video.id}>
                  {/* Anchor tag for semantics */}
                 <div className="block">
                     <VideoThumbnail

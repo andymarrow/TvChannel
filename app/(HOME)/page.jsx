@@ -21,7 +21,7 @@ const liveStreamsData =  [
 
 export default function Home() {
   return (
-    <div className="space-y-8 ">
+    <div className="space-y-8 h-screen">
       {/* Planned Streams Section */}
       <section>
         <h2 className="text-xl text-white font-semibold mb-4 px-1 py-1 inline-block bg-gray-700 rounded">

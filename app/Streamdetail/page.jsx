@@ -155,7 +155,7 @@ function ChannelPage() { // Renamed from 'page' to be more descriptive
           {/* Horizontal Scroll Container */}
           <div className="flex space-x-4 overflow-x-auto pb-4 -ml-4 pl-4"> {/* Adjust margin/padding for alignment */}
             {channelData.videos.map((video) => (
-              <Link href="/VideoDetail">
+              <Link href="/VideoDetail" key={video.id}>
                 <VideoThumbnail
                   key={video.id}
                   title={video.title}
