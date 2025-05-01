@@ -52,11 +52,12 @@ function ChannelPage() { // Renamed from 'page' to be more descriptive
       timeDetail: "18:00",
       waitingCount: 30,
       waitingUsers: [ // Max 5-6 shown visually
-        "https://randomuser.me/api/portraits/women/1.jpg",
-        "https://randomuser.me/api/portraits/men/2.jpg",
-        "https://randomuser.me/api/portraits/women/3.jpg",
-        "https://randomuser.me/api/portraits/men/4.jpg",
-        "https://randomuser.me/api/portraits/women/5.jpg",
+        "/images/avatar1.jpg",
+        "/images/avatar2.jpg",
+        "/images/avatar3.jpg",
+        "/images/avatar4.jpg",
+        "/images/avatar1.jpg",
+        "/images/avatar2.jpg",
       ]
     },
     videos: [

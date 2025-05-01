@@ -67,7 +67,7 @@ function Header() {
         </a>
         <a href="#" className="flex flex-col items-center text-gray-300 hover:text-white transition-colors">
            <img 
-             src="https://randomuser.me/api/portraits/men/7.jpg" // Placeholder user image
+                src="/images/avatar1.jpg"  // Placeholder user image
              alt="User" 
              className="w-7 h-7 rounded-full border-2 border-gray-600 hover:border-blue-400 transition-colors"
            />

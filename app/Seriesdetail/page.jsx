@@ -54,12 +54,12 @@ function ChannelPage() {
       timeDetail: "18:00 PST",
       waitingCount: 37,
       waitingUsers: [
-        "https://randomuser.me/api/portraits/women/1.jpg",
-        "https://randomuser.me/api/portraits/men/2.jpg",
-        "https://randomuser.me/api/portraits/women/3.jpg",
-        "https://randomuser.me/api/portraits/men/4.jpg",
-        "https://randomuser.me/api/portraits/women/5.jpg",
-        "https://randomuser.me/api/portraits/men/6.jpg",
+        "/images/avatar1.jpg",
+        "/images/avatar2.jpg",
+        "/images/avatar3.jpg",
+        "/images/avatar4.jpg",
+        "/images/avatar1.jpg",
+        "/images/avatar2.jpg",
       ]
     },
     videos: [
