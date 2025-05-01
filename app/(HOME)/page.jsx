@@ -28,7 +28,9 @@ export default function Home() {
            Planned Streams
         </h2>
         {/* Horizontal Scroll Container */}
-        <div className="flex space-x-4 overflow-x-auto  pb-4 -mx-4 px-4 overflow-hidden "> 
+        <div 
+         style={{ scrollbarWidth: 'none' }}
+        className="flex space-x-4 overflow-x-auto  pb-4 -mx-4 px-4 overflow-hidden "> 
           {/* Added negative margin and padding to allow shadow visibility */}
           {plannedStreamsData.map((stream) => (
             <Link href="/Streamdetail">
@@ -54,7 +56,9 @@ export default function Home() {
           ON Air
         </h2>
         {/* Grid Layout for Live Streams */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+        <div 
+         style={{ scrollbarWidth: 'none' }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
           {liveStreamsData.map((stream) => (
             <Link href="/Seriesdetail">
               <StreamCard
