@@ -8,23 +8,30 @@ import Link from 'next/link';
 // --- Reusable Video Thumbnail Component ---
 function VideoThumbnail({ title, date, imageUrl }) {
   return (
-    <div className="relative w-48 md:w-56 h-28 md:h-32 rounded-lg overflow-hidden shadow-lg flex-shrink-0 group bg-gray-700 cursor-pointer">
-      {/* Background Image */}
-      <Image
-        src={imageUrl}
-        alt={title || 'Video thumbnail'}
-        layout="fill" // Use fill to cover the container
-        objectFit="cover"
-        className="transition-transform duration-300 group-hover:scale-110"
-      />
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none"></div>
-      {/* Text Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-2 text-white">
-        <h4 className="text-sm font-semibold truncate">{title}</h4>
-        <p className="text-xs text-gray-300">{date}</p>
+   <div className="relative w-40 sm:w-48 md:w-56 h-24 sm:h-28 md:h-32 rounded-lg overflow-hidden shadow-lg flex-shrink-0 group bg-gray-700 cursor-pointer transition-transform duration-300 hover:scale-105">
+        {/* Background Image */}
+        {imageUrl ? (
+           <Image
+             src={imageUrl}
+             alt={title || 'Video thumbnail'}
+             layout="fill"
+             objectFit="cover"
+             className="transition-transform duration-300 group-hover:scale-110"
+           />
+        ) : (
+          <div className="w-full h-full bg-gray-600 flex items-center justify-center text-gray-400">
+            <span>No Image</span>
+          </div>
+        )}
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+        {/* Text Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-2 text-white">
+          {/* Adjusted text sizes */}
+          <h4 className="text-xs sm:text-sm font-semibold truncate">{title || 'Untitled Video'}</h4>
+          <p className="text-[10px] sm:text-xs text-gray-300">{date}</p>
+        </div>
       </div>
-    </div>
   );
 }
 
@@ -77,99 +84,107 @@ function ChannelPage() { // Renamed from 'page' to be more descriptive
           className="opacity-80" // Adjust opacity if needed
         />
         {/* Gradient overlay from left to enhance text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/35 to-transparent"></div>
-
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+        
       </div>
 
 
       {/* Content Area */}
       <div className="relative z-10 p-4 md:p-8 text-white space-y-8 md:space-y-12">
+  {/* Top Channel Info Section */}
+  <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6 items-start">
+    
+    {/* Sidebar */}
+    <div className="md:col-span-1 lg:col-span-1 hidden lg:block">
+      <SideBar />
+    </div>
 
-        {/* Top Channel Info Section */}
-       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 '>
-          <div>
-            <SideBar/>
+    {/* Channel Info + Streaming Info */}
+    <div className="md:col-span-3 lg:col-span-4 space-y-10">
+      
+      {/* Channel Info */}
+      <section className="max-w-xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 drop-shadow-lg">
+          {channelData.name}
+        </h1>
+        <p className="text-base sm:text-lg text-gray-300 mb-3 drop-shadow">
+          {channelData.owner}
+        </p>
+        <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+          <span className="flex items-center bg-black/50 px-2.5 py-1 rounded-md">
+            <FiThumbsUp className="mr-1.5" size={13} /> {channelData.likes}
+          </span>
+          <span className="bg-black/50 px-2.5 py-1 rounded-md">
+            {channelData.ageRating}
+          </span>
+          <span className="bg-black/50 px-2.5 py-1 rounded-md text-blue-300">
+            {channelData.category}
+          </span>
+        </div>
+      </section>
+
+      {/* Next Streaming Info Box */}
+      <section className="max-w-xs">
+        <div className="bg-gray-700/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-600/50">
+          <div className="flex flex-col items-center text-center">
+            <FiCalendar size={24} className="text-blue-400 mb-2" />
+            <h3 className="font-semibold mb-1">{channelData.nextStream.title}</h3>
+            <p className="text-sm text-gray-300">{channelData.nextStream.time}</p>
+            <p className="text-xs text-gray-400 mb-3">{channelData.nextStream.timeDetail}</p>
+
+            <button className="flex items-center text-sm text-blue-300 hover:text-blue-200 transition-colors mb-4">
+              <FiBell className="mr-1.5" size={15} />
+              Remind me
+            </button>
           </div>
-          <div className='md:-ml-80 space-y-10'>
-            <section className="max-w-md"> {/* Limit width of text info */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-1 drop-shadow-lg">{channelData.name}</h1>
-            <p className="text-lg text-gray-300 mb-3 drop-shadow">{channelData.owner}</p>
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="flex items-center bg-black/50 px-2.5 py-1 rounded-md">
-                <FiThumbsUp className="mr-1.5" size={13} /> {channelData.likes}
-              </span>
-              <span className="bg-black/50 px-2.5 py-1 rounded-md">
-                {channelData.ageRating}
-              </span>
-              <span className="bg-black/50 px-2.5 py-1 rounded-md text-blue-300">
-                {channelData.category}
-              </span>
-            </div>
-            </section>
+        </div>
+      </section>
 
-            {/* Next Streaming Info Box */}
-            <section className="max-w-xs"> {/* Limit width */}
-              <div className="bg-gray-700/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-600/50">
-                <div className="flex flex-col items-center text-center">
-                  <FiCalendar size={24} className="text-blue-400 mb-2" />
-                  <h3 className="font-semibold mb-1">{channelData.nextStream.title}</h3>
-                  <p className="text-sm text-gray-300">{channelData.nextStream.time}</p>
-                  <p className="text-xs text-gray-400 mb-3">{channelData.nextStream.timeDetail}</p>
-
-                  <button className="flex items-center text-sm text-blue-300 hover:text-blue-200 transition-colors mb-4">
-                    <FiBell className="mr-1.5" size={15} />
-                    Remind me
-                  </button>
-
-                  
-                </div>
-              </div>
-            </section>
-            <section>
-              {/* Waiting Users */}
-              <div className="flex items-center md:ml-12 w-full">
-                    <div className="flex -space-x-2 mr-2">
-                      {channelData.nextStream.waitingUsers.slice(0, 5).map((userImg, index) => (
-                        <img
-                          key={index}
-                          src={userImg}
-                          alt={`Waiting user ${index + 1}`}
-                          className="w-9 h-9 rounded-full border-2 border-gray-700/80 object-cover"
-                        />
-                      ))}
-                    </div>
-                    <span className="text-xs text-gray-300">
-                      {channelData.nextStream.waitingCount}+ Waiting
-                    </span>
-                  </div>
-            </section>
-          </div>
-       </div>
-       
-
-        {/* My Videos Section */}
-        <section>
-          <h2 className="text-xl font-semibold mb-4 inline-block bg-gray-700/70 px-3 py-1 rounded">
-            My Videos
-          </h2>
-          {/* Horizontal Scroll Container */}
-          <div className="flex space-x-4 overflow-x-auto pb-4 -ml-4 pl-4"> {/* Adjust margin/padding for alignment */}
-            {channelData.videos.map((video) => (
-              <Link href="/VideoDetail" key={video.id}>
-                <VideoThumbnail
-                  key={video.id}
-                  title={video.title}
-                  date={video.date}
-                  imageUrl={video.imageUrl}
-                />
-             </Link>
+      {/* Waiting Users */}
+      <section>
+        <div className="flex items-center w-full">
+          <div className="flex -space-x-2 mr-2">
+            {channelData.nextStream.waitingUsers.slice(0, 5).map((userImg, index) => (
+              <img
+                key={index}
+                src={userImg}
+                alt={`Waiting user ${index + 1}`}
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-gray-700/80 object-cover"
+              />
             ))}
-            {/* Spacer for end padding */}
-            <div className="flex-shrink-0 w-1"></div>
           </div>
-        </section>
+          <span className="text-xs sm:text-sm text-gray-300">
+            {channelData.nextStream.waitingCount}+ Waiting
+          </span>
+        </div>
+      </section>
+    </div>
+  </div>
 
-      </div>
+  {/* My Videos Section */}
+  <section>
+    <h2 className="text-xl font-semibold mb-4 inline-block bg-gray-700/70 px-3 py-1 rounded">
+      My Videos
+    </h2>
+
+    {/* Horizontal Scroll */}
+    <div 
+    style={{ scrollbarWidth: 'none' }}
+    className="flex space-x-4 overflow-x-auto pb-4 -ml-4 pl-4 scrollbar-none">
+{channelData.videos.map((video) => (
+        <Link href="/VideoDetail" key={video.id}>
+          <VideoThumbnail
+            title={video.title}
+            date={video.date}
+            imageUrl={video.imageUrl}
+          />
+        </Link>
+      ))}
+      <div className="flex-shrink-0 w-1"></div>
+    </div>
+  </section>
+</div>
+
     </div>
   );
 }
