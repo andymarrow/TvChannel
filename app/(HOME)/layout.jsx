@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Header from "./_components/Header"; // Assuming components are in _components
-import SideBar from "./_components/SideBar"; // Assuming components are in _components
+import SideBar from "./_components/Sidebar"; // Assuming components are in _components
 
 function RootLayout({ children }) {
   return (
