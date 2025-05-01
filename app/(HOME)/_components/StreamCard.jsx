@@ -19,8 +19,8 @@ function StreamCard({
   }
 
   return (
-    <div className="relative rounded-lg overflow-hidden shadow-lg w-72 md:w-80 h-48 flex-shrink-0 transform transition-transform duration-300 hover:scale-[1.03] group bg-gray-700">
-      {/* Background Image */}
+    <div className="relative rounded-lg overflow-hidden shadow-lg w-full aspect-video transform transition-transform duration-300 hover:scale-[1.03] group bg-gray-700">
+  {/* Background Image */}
       <img 
         src={imageUrl} 
         alt={`${channelName} stream preview`} 
